@@ -1,0 +1,74 @@
+<%- include('partials/header', {user: user}) -%>
+
+<div class="hero h-auto min-h-[83.333333%] bg-base-200 items-start">
+    <div class="hero-content text-center max-h-max">
+      <div class="max-w-lg">
+        <h1 class="text-4xl font-bold mb-2" style="  background: linear-gradient(to right, hsl(var(--p)) 0%, hsl(var(--s)) 30%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;"><%= user.userName%> (Taylor's Version)</h1>
+        <div class="flex flex-col md:flex-row flex-wrap space-x-1.5 space-y-1.5">
+            <div class="card min-w-min flex-auto bg-base-100 shadow-xl">
+                <div class="card-body">
+                  <div class="overflow-x-auto">
+                    <ol>
+                        <% albums.forEach((elem,i) => { %>
+                            <li class="flex gap-2">
+                                <span><%= i+1 %>.</span>
+                                <span><%= elem.name %></span>
+                            </li>
+                        <% }) %>
+
+                        <% if (albums.length===0) { %>
+                            <span>no liked albums. are you even a swiftie?</span>
+                        <% } %>
+                    </ol>
+                  </div>
+                </div>
+            </div>
+            
+            <div class="card min-w-min flex-auto row bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <div class="overflow-x-auto">
+                        <ol>
+                            <% songs.forEach((elem,i) => { %>
+                                <li class="flex gap-2">
+                                    <span><%= i+1 %>.</span>
+                                    <span><%= elem.name %></span>
+                                </li>
+                            <% }) %>
+                            <% if (songs.length===0) { %>
+                                <span>no liked songs. i recommend listening to august</span>
+                            <% } %>
+    
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card min-w-min flex-auto bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <div class="overflow-x-auto">
+                        <ol>
+                            <% lyrics.forEach((elem,i) => { %>
+                                <li class="flex gap-2">
+                                    <span><%= i+1 %>.</span>
+                                    <span><%= elem.lyrics %></span>
+                                </li>
+                            <% }) %>
+                            <% if (lyrics.length===0) { %>
+                                <span>no liked lyrics. taylor is a lyrical genius- there is so many songs to choose from</span>
+                            <% } %>
+    
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<%- include('partials/footer') -%>

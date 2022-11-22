@@ -1,0 +1,48 @@
+<%- include('partials/header', {user: user}) -%>
+
+<div class="hero h-auto min-h-[83.333333%] bg-base-100 justify-start items-start w-screen">
+    <div class="hero-content w-screen grow">
+      <div class="w-3/4">
+        <h1 class="text-5xl font-bold mb-1" 
+        style="  background: linear-gradient(to right, hsl(var(--p)) 0%, hsl(var(--s)) 10%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;">ALBUMS</h1>
+        <ul>
+            <% album.forEach( (elem,i) => { %>
+                <li class="flex justify-between">
+                    <span class="text-start text-primary""><%= i+1 %>.</span>
+                    <span class="w-3/4 text-start" style="  background: linear-gradient(to right, hsl(var(--p)) 0%, hsl(var(--s)) 30%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;"><%= elem.name %></span>
+                    <% if (user) { %>
+                        <% if (elem.likes.includes(user.id)) { %>
+                            <form
+                            class=""
+                            action="/albums/unlike/<%= elem._id %>?_method=PUT"
+                            method="POST"
+                            >
+                                <button class="fa-solid fa-heart text-primary" type="submit"></button>
+                            </form> 
+            
+                        <% } else { %>
+                            <form
+                            class=""
+                            action="/albums/like/<%= elem._id %>?_method=PUT"
+                            method="POST"
+                            >
+                                <button class="fa-solid fa-heart text-base-300" type="submit"></button>
+                            </form> 
+                        <% } %>
+                      <% } %>     
+                  <span class="text-primary"><%= elem.likesCount %></span>
+                </li>
+        
+            <% }) %>
+        </ul>        
+      </div>
+    </div>
+</div>
+
+
+
+<%- include('partials/footer') -%>

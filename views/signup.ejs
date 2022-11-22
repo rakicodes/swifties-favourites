@@ -1,0 +1,60 @@
+<%- include('partials/header', {user: user}) -%>
+
+<div class="hero h-full bg-base-200">
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <div class="card-body">
+        <div>
+          <% if (locals.messages.errors) { %>
+              <% messages.errors.forEach( el => { %>
+                <p class="text-xs text-error"><%= el.msg %></p>
+              <% }) %>    
+          <% } %>
+          <% if (locals.messages.info) { %>
+              <% messages.info.forEach( el => { %>
+                  <p class="text-xs text-info"><%= el.msg %></p>
+              <% }) %>              
+          <% } %>
+        </div>
+
+        <form action="/signup" method="POST">
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Username</span>
+            </label>
+            <input type="text" placeholder="username" class="input input-bordered" aria-describedby="usernameHelp" name="userName"/>
+          </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Email</span>
+            </label>
+            <input type="email" placeholder="email" class="input input-bordered" aria-describedby="emailHelp" name="email"/>
+            <label class="label">
+              <span id="emailHelp" class="label-text-alt">We'll never share your email with anyone else.</span>
+            </label>
+          </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Password</span>
+            </label>
+            <input type="password" placeholder="password" class="input input-bordered" name="password"/>
+          </div>
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Confirm Password</span>
+            </label>
+            <input type="password" placeholder="confirm password" id="confirmPassword" class="input input-bordered" name="confirmPassword"/>
+            <label class="label">
+              <span class="label-text-alt">Already have an account?<a href="/login" class="label-text-alt link link-hover text-secondary"> Log in</a></span>
+            </label>
+          </div>
+          <div class="form-control mt-6">
+            <button class="btn btn-primary">Create account</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') -%>

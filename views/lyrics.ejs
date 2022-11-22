@@ -1,0 +1,71 @@
+<%- include('partials/header') -%>
+
+<div class="hero h-auto min-h-[83.333333%] bg-base-100 justify-start items-start w-screen">
+    <div class="hero-content flex-wrap justify-between items-start">
+      <div class="grow md:w-2/3">
+        <h1 class="w-full text-5xl font-bold mb-1" style="background: linear-gradient(to right, hsl(var(--p)) 0%, hsl(var(--s)) 10%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;">LYRICS</h1>
+        <ul>
+            <% lyrics.forEach( (elem,i) => { %>
+                <li class="flex justify-between gap-1">
+                    <span class="text-start text-primary"><%= i+1 %>.</span>
+                    <span class="w-3/4 text-start" style="background: linear-gradient(to right, hsl(var(--p)) 0%, hsl(var(--s)) 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;"><%= elem.lyrics %></span>
+                    <div class="w-1/4 flex justify-end gap-2">
+                        <% if (user) { %>
+                          <% if (elem.likes.includes(user.id)) { %>
+                                <form
+                                class=""
+                                action="/lyrics/unlike/<%= elem._id %>?_method=PUT"
+                                method="POST"
+                                >
+                                    <button class="fa-solid fa-heart text-primary"  type="submit"></button>
+                                </form> 
+                
+                          <% } else { %>
+                                <form
+                                class=""
+                                action="/lyrics/like/<%= elem._id %>?_method=PUT"
+                                method="POST"
+                                >
+                                    <button class="fa-solid fa-heart text-base-200" type="submit"></button>
+                                </form> 
+                          <% } %>   
+                        <%}%>
+        
+                        <span  class="text-primary"><%= elem.likesCount %></span>
+                        <% if (user) { %>
+                          <%if(elem.createdBy == user.id){ %>
+                            <form
+                            action="/lyrics/deleteLyrics/<%= elem._id %>?_method=DELETE"
+                            method="POST"
+                            class="col-3"
+                            >
+                                <button class="fa fa-x text-accent" type="submit"></button>
+                            </form>
+                          <%}%>
+                        <%}%>
+                    </div>
+
+                </li>
+        
+            <% }) %>
+        </ul>                
+      </div>
+      <% if (user) { %>
+        <div class="form-control grow md:w-1/4 mt-5">
+          <form action="/lyrics/addLyrics" method="POST">
+            <div class="input-group mb-3">
+                <textarea type="text" class="textarea textarea-bordered w-full" placeholder="add lyrics here..." id="value" name="value"></textarea>
+            </div>
+            <button type="submit" class="btn btn-square w-full btn-primary" value="Upload">Add</button>
+          </form>
+        </div>
+      <%}%>
+
+    </div>
+  </div>
+
+<%- include('partials/footer') -%>

@@ -52,7 +52,7 @@
                             <% lyrics.forEach((elem,i) => { %>
                                 <li class="flex gap-2">
                                     <span><%= i+1 %>.</span>
-                                    <span><%= elem.lyrics %></span>
+                                    <span class="text-start"><%= elem.lyrics %></span>
                                 </li>
                             <% }) %>
                             <% if (lyrics.length===0) { %>

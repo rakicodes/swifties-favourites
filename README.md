@@ -17,7 +17,7 @@ password: 123456789
 # How It's Made
 Technologies used: MongoDB, ExpressJS, NodeJS, EJS
 
-I built this website using the MERN stack and the MVC framework. 
+I built this website using the MERN stack and the MVC framework. For the backend, the database uses MongoDB and the server is implemented using NodeJS. For the frontend, I used EJS to dynamically update the HTML and I also use TailwindCSS for the styling.
 
 
 # Optimizations
